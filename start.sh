@@ -1,9 +1,19 @@
 #!/bin/sh
 
-echo "=== PATH ==="
-echo $PATH
+cat > /tmp/config.toml << EOF
+[app]
+address = "0.0.0.0:9000"
 
-echo "=== Searching listmonk ==="
-find / -name "*listmonk*" 2>/dev/null
+[db]
+host = "${LISTMONK_db_host}"
+port = ${LISTMONK_db_port}
+user = "${LISTMONK_db_user}"
+password = "${LISTMONK_db_password}"
+database = "${LISTMONK_db_database}"
+ssl_mode = "disable"
+max_open = 25
+max_idle = 25
+max_lifetime = "300s"
+EOF
 
-sleep 300
+/listmonk/listmonk --config /tmp/config.toml
