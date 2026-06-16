@@ -16,4 +16,4 @@ max_idle = 25
 max_lifetime = "300s"
 EOF
 
-/listmonk/listmonk --install --yes --config /tmp/config.toml
+/listmonk/listmonk --config /tmp/config.toml
